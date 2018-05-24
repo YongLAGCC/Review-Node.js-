@@ -1,73 +1,15 @@
-// function express
-
-function callFunction(fun){
-    fun(); 
-}
-var sayBye = function(){
-    console.log('bye');
-};
-callFunction(sayBye);
-
-//module
-module.exports = counter; 
-
-const count = require('./count');
-console.log(count.counter(['1','2']));
-console.log(count.adder(3,5));
-console.log(count.pi);
-
-// events
-
-var events = require('events');
-
-var myEmitter = new events.EventEmitter(); 
-
-myEmitter.on('someEvent', function(mssg){
-    console.log(mssg); 
-});
-
-myEmitter.emit('someEvent', 'the event was emitted');
 
 
-// console.log('~~~~~~~util module(inherite)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`')
-
-
-var events = require('events');
-var util = require('util'); 
-
-var Person = function(name){
-    this.name = name; 
-}
-
-util.inherits(Person, events.EventEmitter); 
-
-var james = new Person('james'); 
-var mary = new Person('mary'); 
-var ryu = new Person('ryu'); 
-var people = [james, mary, ryu];
-
-people.forEach(function(person){
-    person.on('speak', function(mssg){
-        console.log(person.name + 'said: ' + mssg); 
-    });
-});
-
-james.emit('speak', 'hey, dude');
-mary.emit('speak', 'coffee ')
-
-// console.log('~~~~~~~~~~~~~~~~~~read and wirte files~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`')
-
-
-var fs = require('fs'); 
-
-var readMe = fs.readFileSync('readMe.txt', 'utf8');
-//console.log(readMe);
-fs.writeFileSync('write.txt', readMe);
-
-// asynchrnous wirte and read
-
+var http = require('http'); //  uses the HTTP server to process requests and send subsequent responses.
 var fs = require('fs');
 
-fs.readFile('readMe.txt', 'utf8', function(err,data){
-    fs.writeFile('writeMe.txt', data);
+var server = http.createServer(function(req, res){ //creates the web server object.
+    console.log('request was made: '+req.url);
+    res.writeHead(200, {'Content-type': 'text/plain'});//sends a response header in the form of a status code along with the exact header message.
+
+    var myReadStream = fs.createReadStream(__dirname + '/readMe.txt', 'utf8'); 
+    myReadStream.pipe(res);
 });
+
+server.listen(3000, '127.0.0.1'); //accepts connections on port 300 on URL http://127.0.0.1 (or http://localhost).
+console.log('yo, now listening to port 3000');
