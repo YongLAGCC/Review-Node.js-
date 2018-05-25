@@ -167,6 +167,9 @@ console.log('yo, now listening to port 3000');
 const express = require('express'); 
 const app =  express(); 
 app.set('view engine', 'ejs');
+var bodyParser = require('body-parser');//create application/json parser
+var urlencodedParser = bodyParser.urlencoded({extended:false }); // create application/x-www-form-urlencodede parser
+
 app.use('/assets', express.static('assets')); // middleware, 
 // the first folder assets match routs, and 2nd one link up the directory to where it's stored
 
@@ -174,16 +177,17 @@ app.get('/', function(req, res) {
     res.render('index'); // view use render, and just pass review name
 });
 
-app.get('/Contact', function(req, res){
-    res.render('contact');
+app.get('/contact', function(req, res){
+    res.render('contact', {queryString: req.query}); // query string to assess input data
 });
 
 app.get('/profile/:name', function(req, res){
     var data = {age: 26, job: 'yong', hobbies:['fishing', 'eating','playing']}; //insert more data in view
-    res.render('profile',{person: req.params.name, data:data});// the second param just object
-   
-
+    res.render('profile',{person: req.params.name, data:data});// the second param just object 
 })
 
-
-app.listen(3000);
+app.post('/contact',urlencodedParser, function(req, res){  // post data to the server
+    console.log(req.body)
+    res.render('contact-success', {dat: req.body}); // pass data back to client page
+})
+app.listen(3000);   

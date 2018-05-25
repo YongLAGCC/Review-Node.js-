@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{background: skyblue; font-family: verdana; color: #fff; padding: 30px; }
+            h1{font-size: 48px; text-transform: uppercase; letter-spacing: 2px; text-align: center; }
+            p{font-size: 16px; text-align: center; }
+                       
+        </style>
+        
+    </head>
+    <body>
+        <% include partials/nav.ejs %>
+        <h1>Contact us!</h1>
+        <p>Thank you for connect with Boston University!</p>
+        <p>Successed connected with <%= dat.Who %> in <%= dat.department %> department!</p>
+        <p>We will reply to you at <%= dat.emmil %> shortly </p> // "dat" corrsponse to app.js post
+
+
+    </body>
+</html>

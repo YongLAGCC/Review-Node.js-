@@ -5,13 +5,24 @@
             body{background: skyblue; font-family: verdana; color: #fff; padding: 30px; }
             h1{font-size: 48px; text-transform: uppercase; letter-spacing: 2px; text-align: center; }
             p{font-size: 16px; text-align: center; }
+                       
         </style>
         
     </head>
     <body>
         <% include partials/nav.ejs %>
-        <h1>yong</h1>
-        <p>you will play around html file, upload to clients</p>
-        <p>email: yong@.com</p>
+        <h1>Contact us!</h1>
+        <p>Contact Boston University from here!</p>
+        <form id = " contact-form" method = "POST"  action = "/contact"> <!--pass input value by route(POST) in app.js -->
+            <label for ="Department"> Which department you want to contact? </label> <br>
+            <input type = "text" name = "department" value ="<%= queryString.depart %>" ><br>
+            <label for = "Who"> Who do you want to contact?</label><br>
+            <input type = "text" name = "Who" value= "<%= queryString.person %>"><br> 
+            <label for = "email" >Your email</label><br>
+            <input type = "email" name="email"/><br>
+            <input type = "submit" value = "submit"/><br>
+        </form>
+
+
     </body>
 </html>
