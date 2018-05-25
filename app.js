@@ -133,7 +133,7 @@ console.log('yo, yong, now listen to port 3000');
 
 */
 
-
+/*
 // serving HTML to clients
 
 var http = require('http'); //  uses the HTTP server to process requests and send subsequent responses.
@@ -162,3 +162,28 @@ var server = http.createServer(function(req, res){ //creates the web server obje
 server.listen(3000, '127.0.0.1'); //accepts connections on port 300 on URL http://127.0.0.1 (or http://localhost).
 console.log('yo, now listening to port 3000');
 
+*/
+
+const express = require('express'); 
+const app =  express(); 
+app.set('view engine', 'ejs');
+app.use('/assets', express.static('assets')); // middleware, 
+// the first folder assets match routs, and 2nd one link up the directory to where it's stored
+
+app.get('/', function(req, res) {
+    res.render('index'); // view use render, and just pass review name
+});
+
+app.get('/Contact', function(req, res){
+    res.render('contact');
+});
+
+app.get('/profile/:name', function(req, res){
+    var data = {age: 26, job: 'yong', hobbies:['fishing', 'eating','playing']}; //insert more data in view
+    res.render('profile',{person: req.params.name, data:data});// the second param just object
+   
+
+})
+
+
+app.listen(3000);

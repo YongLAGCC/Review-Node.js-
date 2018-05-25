@@ -1,0 +1,27 @@
+{
+  "name": "ls",
+  "version": "1.0.0",
+  "description": "a little test app",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YongLAGCC/Review-Node.js-.git"
+  },
+  "keywords": [
+    "fun",
+    "yong"
+  ],
+  "author": "me",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YongLAGCC/Review-Node.js-/issues"
+  },
+  "homepage": "https://github.com/YongLAGCC/Review-Node.js-#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3"
+  }
+}
